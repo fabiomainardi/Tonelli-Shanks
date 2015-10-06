@@ -1,6 +1,4 @@
-# Tonelli-Shanks algorithm
-# p is prime
-# solves the congruence x^2 = n mod p
+from Tkinter import *
 def TS(p,n):
     import math
     if(int(math.pow(n,(p-1)/2))%p !=1):
@@ -37,3 +35,36 @@ def TS(p,n):
         
     return r
     
+def calculate():
+    res=TS(int(e1.get()), int(e2.get()))
+    print(res)
+    t="result: "+str(res)
+    text.delete(1.0, END)
+    text.insert(INSERT,t)
+
+    
+master = Tk()
+master.title("Tonelli-shanks")
+labelfont = ('times', 20, 'bold')
+label1=Label(master, text="prime p (modulo):")
+label1.grid(row=0)
+label1.config(bg='black', fg='yellow')
+label1.config(font=labelfont)
+label2=Label(master, text="n:")
+label2.grid(row=1)
+label2.config(bg='black',fg='yellow')
+label2.config(font=labelfont)
+
+e1 = Entry(master)
+e2 = Entry(master)
+
+e1.grid(row=0, column=1)
+e2.grid(row=1, column=1)
+text = Text(master,bd=5,height=1,width=20)
+text.grid(row=2)
+
+
+
+Button(master, text='Calculate', command=calculate).grid(row=3, column=1, sticky=W, pady=4)
+
+mainloop( )
